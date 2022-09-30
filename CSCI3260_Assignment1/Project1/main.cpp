@@ -123,16 +123,16 @@ void sendDataToOpenGL() {
 		const GLfloat tree[] =
 		{
 			-3.0f, 6.0f, +0.0f,  // left
-			+0.2f, +0.3f, +0.3f,  // color
+			+0.2f, +0.3f, +0.2f,  // color
 
 			+3.0f, 6.0f, +0.0f,  // right
-			+0.2f, +0.3f, +0.3f,
+			+0.2f, +0.3f, +0.2f,
 
 			+0.0f, 25.0f, +0.0f,  // top
-			+0.2f, +0.3f, +0.3f,
+			+0.05f, +0.1f, +0.1f,
 
 			+0.0f, 6.0f, +4.0f,  // back
-			+0.2f, +0.3f, +0.3f,
+			+0.2f, +0.3f, +0.2f,
 
 			-1.0f, 0.0f, 1.0f,  // bottom left-bottom
 			+0.6f, +0.5f, +0.3f,  // color
@@ -147,16 +147,16 @@ void sendDataToOpenGL() {
 			+0.6f, +0.5f, +0.3f,
 
 			-1.0f, 6.0f, 1.0f,  // top left-bottom
-			+0.6f, +0.5f, +0.3f,  // color
+			+0.4f, +0.3f, +0.2f,  // color
 
 			1.0f, 6.0f, 1.0f,  // top right-bottom
-			+0.6f, +0.5f, +0.3f,
+			+0.4f, +0.3f, +0.2f,
 
 			1.0f, 6.0f, -1.0f,  // top right-top
-			+0.6f, +0.5f, +0.3f,
+			+0.4f, +0.3f, +0.2f,
 
 			-1.0f, 6.0f, -1.0f,  // top left-top
-			+0.6f, +0.5f, +0.3f,
+			+0.4f, +0.3f, +0.2f,
 		};
 
 		glGenVertexArrays(1, &VAO[0]);
@@ -201,48 +201,6 @@ void sendDataToOpenGL() {
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 	}
 
-	//block
-	{
-		const GLfloat platform[] =
-		{
-			-25.0f, 0.0f, -50.0f,  // left-top
-			+1.0f, +1.0f, +0.0f,  // color
-
-			25.0f, 0.0f, -50.0f,  // right-top
-			+1.0f, +1.0f, +0.0f,
-
-			25.0f, 0.0f, 0.0f,  // right-bottom
-			+1.0f, +1.0f, +0.0f,
-
-			-25.0f, 0.0f, 0.0f,  // left-bottom
-			+1.0f, +1.0f, +0.0f,
-		};
-
-		glGenVertexArrays(1, &VAO[1]);
-		glGenBuffers(1, &VBO[1]);
-
-		glBindVertexArray(VAO[1]);
-		glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(platform), platform, GL_STATIC_DRAW);
-
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-
-		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (char*)(3 * sizeof(float)));
-
-
-		glGenBuffers(1, &EBO[1]);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO[1]);
-
-		GLuint indices[] = {
-			0,1,2,
-			2,3,0
-
-		};
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-	}
-
 	//platform
 	{
 		const GLfloat platform[] =
@@ -258,7 +216,40 @@ void sendDataToOpenGL() {
 
 			-25.0f, 0.0f, 0.0f,  // left-bottom
 			+0.0f, +1.0f, +0.0f,
+
+			//handrail
+			-25.0f, 20.0f, -49.0f,
+			+0.8f, +0.8f, +0.2f,
+
+			-25.0f, 20.0f, -42.0f,
+			+0.8f, +0.8f, +0.2f,
+
+			25.0f, 20.0f, -49.0f,
+			+0.8f, +0.8f, +0.2f,
+
+			25.0f, 20.0f, -42.0f,
+			+0.8f, +0.8f, +0.2f,
+
+			//front decoration
+			24.0f, 5.0f, 1.0f,  //top right-up
+			+0.3f, +0.5f, +0.3f,
+
+			-25.0f, 5.0f, 1.0f,  //top left-up
+			+0.3f, +0.5f, +0.3f,
+
+			24.0f, 5.0f, 6.0f, //top right-down
+			+0.3f, +0.5f, +0.3f,
+
+			-25.0f, 5.0f, 6.0f, //top left-down
+			+0.3f, +0.5f, +0.3f,
+
+			30.0f, -5.0f, 9.0f, //bottom right-down
+			+0.2f, +0.3f, +0.2f,
+
+			-30.0f, -5.0f, 9.0f, //bottom left-down
+			+0.2f, +0.3f, +0.2f,
 		};
+
 
 		glGenVertexArrays(1, &VAO[1]);
 		glGenBuffers(1, &VBO[1]);
@@ -279,27 +270,39 @@ void sendDataToOpenGL() {
 
 		GLuint indices[] = {
 			0,1,2,
-			2,3,0
+			2,3,0,
 
+
+			0,3,4,
+			3,5,4,
+			2,1,6,
+			7,2,6,
+
+			8,2,3,
+			9,8,3,
+			9,11,10,
+			9,8,10,
+			11,13,12,
+			11,10,12
 		};
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 	}
 
-	//block
+	//9 blocks
 	{
 		const GLfloat block[] =
 		{
 			0.0f, 0.0f, 0.0f,  // bottom left-bottom
-			+1.0f, +1.0f, +0.0f,  // color
+			+0.6f, +0.5f, +0.0f,  // color
 
 			14.0f, 0.0f, 0.0f,  // bottom right-bottom
-			+1.0f, +1.0f, +0.0f,
+			+0.6f, +0.5f, +0.0f,
 
 			14.0f, 0.0f, -14.0f,  // bottom right-top
-			+1.0f, +1.0f, +0.0f,
+			+0.6f, +0.5f, +0.0f,
 
 			0.0f, 0.0f, -14.0f,  // bottom left-top
-			+1.0f, +1.0f, +0.0f,
+			+0.6f, +0.5f, +0.0f,
 
 			0.0f, 2.0f, 0.0f,  // top left-bottom
 			+1.0f, +1.0f, +0.0f,  // color
@@ -371,17 +374,17 @@ void sendDataToOpenGL() {
 			+0.5f, +0.3f, +0.2f,
 
 			//medium
-			-5.25f, 12.5f, 5.25f,  // medium left-bottom
-			+0.8f, +0.5f, +0.3f,  // color
+			-4.5f, 12.5f, 4.5f,  // medium left-bottom
+			+0.8f, +0.6f, +0.4f,  // color
 
-			5.25f, 12.5f, 5.25f,  // medium right-bottom
-			+0.8f, +0.5f, +0.3f,
+			4.5f, 12.5f, 4.5f,  // medium right-bottom
+			+0.8f, +0.6f, +0.4f,
 
-			5.25f, 12.5f, -5.25f,  // medium right-top
-			+0.8f, +0.5f, +0.3f,
+			4.5f, 12.5f, -4.5f,  // medium right-top
+			+0.8f, +0.6f, +0.4f,
 
-			-5.25f, 12.5f, -5.25f,  // medium left-top
-			+0.8f, +0.5f, +0.3f,
+			-4.5f, 12.5f, -4.5f,  // medium left-top
+			+0.8f, +0.6f, +0.4f,
 
 			//top
 			-3.25f, 15.0f, 3.25f,  // top left-bottom
@@ -522,16 +525,16 @@ void sendDataToOpenGL() {
 		const GLfloat select_box[] =
 		{
 			0.0f, 0.0f, 0.0f,  // bottom left-bottom
-			+1.0f, +0.0f, +0.0f,  // color
+			+0.7f, +0.0f, +0.0f,  // color
 
 			16.0f, 0.0f, 0.0f,  // bottom right-bottom
-			+1.0f, +0.0f, +0.0f,
+			+0.7f, +0.0f, +0.0f,
 
 			16.0f, 0.0f, -16.0f,  // bottom right-top
-			+1.0f, +0.0f, +0.0f,
+			+0.7f, +0.0f, +0.0f,
 
 			0.0f, 0.0f, -16.0f,  // bottom left-top
-			+1.0f, +0.0f, +0.0f,
+			+0.7f, +0.0f, +0.0f,
 
 			0.0f, 3.0f, 0.0f,  // top left-bottom
 			+1.0f, +0.0f, +0.0f,  // color
@@ -751,7 +754,7 @@ void paintGL(void) {
 		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(0.0f, 0.0f, 2.0f));
 		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
 		glBindVertexArray(VAO[1]);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
 	}
 	//blocks
 	{
@@ -926,7 +929,6 @@ void paintGL(void) {
 	}
 	//select box
 	{
-		
 		glm::mat4 modelTransformMatrix = glm::mat4(1.0f);
 		switch (current_pos) {
 			case 0:
@@ -970,6 +972,41 @@ void paintGL(void) {
 		//1
 		modelTransformMatrix = glm::mat4(1.0f);
 		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(0.0f, 28.0f, -48.0f));
+		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
+		glBindVertexArray(VAO[5]);
+		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
+
+		//2
+		modelTransformMatrix = glm::mat4(1.0f);
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(10.0f, 23.0f, -50.0f));
+		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
+		glBindVertexArray(VAO[5]);
+		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
+
+		//3
+		modelTransformMatrix = glm::mat4(1.0f);
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(-18.0f, 26.0f, -45.0f));
+		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
+		glBindVertexArray(VAO[5]);
+		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
+
+		//4
+		modelTransformMatrix = glm::mat4(1.0f);
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(-33.0f, 24.0f, -48.0f));
+		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
+		glBindVertexArray(VAO[5]);
+		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
+
+		//5
+		modelTransformMatrix = glm::mat4(1.0f);
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(-23.0f, 29.0f, -50.0f));
+		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
+		glBindVertexArray(VAO[5]);
+		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
+
+		//6
+		modelTransformMatrix = glm::mat4(1.0f);
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(28.0f, 27.0f, -45.0f));
 		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
 		glBindVertexArray(VAO[5]);
 		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
@@ -1019,7 +1056,9 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 				for (int i = 0; i < 9; i++) {
 					int r = rand() % 2;
 					std::cout << "r: " << r << std::endl;
-					mole_pos[i] = r;
+					if (i != current_pos) {
+						mole_pos[i] = r;
+					}
 					mole_survive += r;
 				}
 				mole_rotate = 0;
@@ -1053,15 +1092,15 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 	}
 
 	if ((key == GLFW_KEY_Z) && action == GLFW_PRESS) {
-		if (camera_move >= -2.5) {
-			camera_move -= 0.5;
+		if (camera_move >= -2.0) {
+			camera_move -= 1.0;
 		}
 		
 		std::cout << "camera_move: " << camera_move << std::endl;
 	}
 	if ((key == GLFW_KEY_X) && action == GLFW_PRESS) {
-		if (camera_move <= 14.5) {
-			camera_move += 0.5;
+		if (camera_move <= 14.0) {
+			camera_move += 1.0;
 		}
 		
 		std::cout << "camera_move: " << camera_move << std::endl;
