@@ -1,7 +1,7 @@
 /*
 Type your name and student ID here
-	- Name:
-	- Student ID:
+	- Name: Ng Ching Yi
+	- Student ID: 1155149111
 */
 
 #include "Dependencies/glew/glew.h"
@@ -971,42 +971,42 @@ void paintGL(void) {
 
 		//1
 		modelTransformMatrix = glm::mat4(1.0f);
-		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(0.0f, 28.0f, -48.0f));
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(0.0f, 23.0f, -48.0f));
 		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
 		glBindVertexArray(VAO[5]);
 		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
 
 		//2
 		modelTransformMatrix = glm::mat4(1.0f);
-		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(10.0f, 23.0f, -50.0f));
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(10.0f, 18.0f, -50.0f));
 		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
 		glBindVertexArray(VAO[5]);
 		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
 
 		//3
 		modelTransformMatrix = glm::mat4(1.0f);
-		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(-18.0f, 26.0f, -45.0f));
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(-18.0f, 21.0f, -45.0f));
 		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
 		glBindVertexArray(VAO[5]);
 		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
 
 		//4
 		modelTransformMatrix = glm::mat4(1.0f);
-		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(-33.0f, 24.0f, -48.0f));
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(-33.0f, 19.0f, -48.0f));
 		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
 		glBindVertexArray(VAO[5]);
 		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
 
 		//5
 		modelTransformMatrix = glm::mat4(1.0f);
-		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(-23.0f, 29.0f, -50.0f));
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(-23.0f, 24.0f, -50.0f));
 		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
 		glBindVertexArray(VAO[5]);
 		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);
 
 		//6
 		modelTransformMatrix = glm::mat4(1.0f);
-		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(28.0f, 27.0f, -45.0f));
+		modelTransformMatrix = glm::translate(modelTransformMatrix, glm::vec3(28.0f, 22.0f, -45.0f));
 		glUniformMatrix4fv(modelTransformMatrixUniformLocation, 1, GL_FALSE, &modelTransformMatrix[0][0]);
 		glBindVertexArray(VAO[5]);
 		glDrawElements(GL_TRIANGLES, 42, GL_UNSIGNED_INT, 0);

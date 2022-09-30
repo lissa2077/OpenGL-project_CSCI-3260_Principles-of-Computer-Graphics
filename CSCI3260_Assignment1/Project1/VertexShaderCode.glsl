@@ -1,3 +1,9 @@
+/*
+Type your name and student ID here
+	- Name: Ng Ching Yi
+	- Student ID: 1155149111
+*/
+
 #version 430
 
 in layout(location=0) vec3 position;
