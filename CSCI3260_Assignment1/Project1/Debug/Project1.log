@@ -1,0 +1,2 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1094,5): error MSB6006: "link.exe" 以返回碼 1104 結束。
+LINK : fatal error LNK1104: 無法開啟檔案 'glfw3.lib'
